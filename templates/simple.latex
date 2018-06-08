@@ -1,0 +1,9 @@
+\documentclass{article}
+\title{$title$}
+$if(author)$
+\author{$for(author)$$author$$sep$\and$endfor$}
+$endif$
+\begin{document}
+\maketitle
+$body$
+\end{document}
