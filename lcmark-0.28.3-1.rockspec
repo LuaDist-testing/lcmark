@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "lcmark"
-version = "0.27.0-1"
+version = "0.28.3-1"
 -- LuaDist source
 source = {
-  tag = "0.27.0-1",
+  tag = "0.28.3-1",
   url = "git://github.com/LuaDist-testing/lcmark.git"
 }
 -- Original source
 -- source = {
 --     url = "git://github.com/jgm/lcmark",
---     tag = "0.27.0"
+--     tag = "0.28.3"
 -- }
 description = {
     summary = [[A command-line CommonMark converter with flexible
@@ -32,7 +32,7 @@ description = {
 }
 dependencies = {
    "lua >= 5.2",
-   "cmark >= 0.27.0",
+   "cmark >= 0.28.3",
    "yaml >= 1.1",
    "lpeg >= 0.12",
    "optparse >= 1.0.1",

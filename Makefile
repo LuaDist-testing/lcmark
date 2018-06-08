@@ -1,12 +1,16 @@
-VERSION=0.27.0
+VERSION=0.28.3
 REVISION=1
 ROCKSPEC=lcmark-$(VERSION)-$(REVISION).rockspec
 TESTS=tests
 CMARK_DIR=../cmark
 
-.PHONY: clean, test, all, rock, update, check
+.PHONY: clean, test, all, rock, update, check, checkversion
 
 all: rock lcmark.1
+
+checkversion:
+	@grep -q 'lcmark.version = "$(VERSION)"' lcmark.lua || \
+	    (echo "lcmark.version needs updating in lcmark.lua" && exit 1)
 
 lcmark.1: lcmark.1.md templates/default.man
 	bin/lcmark -t man --template templates/default.man -o $@ $<
@@ -14,8 +18,11 @@ lcmark.1: lcmark.1.md templates/default.man
 $(ROCKSPEC): rockspec.in
 	sed -e "s/_VERSION/$(VERSION)/g; s/_REVISION/$(REVISION)/g" $< > $@
 
-rock: $(ROCKSPEC)
+rock: checkversion $(ROCKSPEC)
 	luarocks --local make $(ROCKSPEC)
+
+upload: rock
+	luarocks upload --api-key=$(LUAROCKS_API_KEY) $(ROCKSPEC)
 
 update: $(TESTS)/spec-tests.lua
 
