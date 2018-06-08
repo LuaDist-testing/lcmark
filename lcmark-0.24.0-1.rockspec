@@ -1,8 +1,17 @@
+-- This file was automatically generated for the LuaDist project.
+
 package = "lcmark"
-version = "0.23.0-2"
+version = "0.24.0-1"
+-- LuaDist source
 source = {
-    url = "https://github.com//jgm/lcmark/archive/0.23.0-2.tar.gz"
+  tag = "0.24.0-1",
+  url = "git://github.com/LuaDist-testing/lcmark.git"
 }
+-- Original source
+-- source = {
+--     url = "git://github.com/jgm/lcmark",
+--     tag = "0.24.0"
+-- }
 description = {
     summary = [[A command-line CommonMark converter with flexible
       features, and a lua module that exposes these features.]],
@@ -23,15 +32,17 @@ description = {
 }
 dependencies = {
    "lua >= 5.2",
-   "cmark >= 0.23",
+   "cmark >= 0.24",
    "yaml >= 1.1",
    "lpeg >= 0.12",
    "alt-getopt >= 0.7",
 }
 build = {
-    type = "none",
+    type = "builtin",
+    modules = {
+        lcmark = "lcmark.lua"
+    },
     install = {
-        lua = { lcmark = "lcmark.lua" },
-        bin = { "bin/lcmark" }
+        bin = { lcmark = "bin/lcmark" }
     }
 }
